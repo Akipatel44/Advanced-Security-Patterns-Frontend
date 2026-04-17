@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../lib/axios";
 import Card from "../../components/ui/Card";
 import Button from "../../components/ui/Button";
 import IconKey from "../../components/icons/IconKey";
