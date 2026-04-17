@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-	--bg: #f8fafc; /* very light gray */
-	--card: #ffffff;
-	--muted: #64748b;
-	--text: #0f172a;
-	--primary: #4f46e5;
-	--accent: #06b6d4;
+	/* Warm Earthy Palette */
+	--bg: #FAF7F1; /* soft cream */
+	--card: #FFF8F2; /* very light warm card */
+	--muted: #7C7C7C; /* muted gray */
+	--text: #1F2937; /* neutral dark */
+	--primary: #C2410C; /* terracotta / warm primary */
+	--accent: #0F766E; /* deep teal accent */
 }
 
 @tailwind base;

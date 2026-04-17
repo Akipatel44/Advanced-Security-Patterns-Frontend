@@ -7,16 +7,16 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50: '#f6f7ff',
-          100: '#eef2ff',
-          200: '#e0e7ff',
-          500: '#4f46e5'
+          50: '#fff8f2',
+          100: '#fff1e6',
+          200: '#fcd8bf',
+          500: '#C2410C'
         },
         accent: {
-          500: '#06b6d4'
+          500: '#0F766E'
         },
         muted: {
-          500: '#64748b'
+          500: '#7C7C7C'
         }
       },
       fontFamily: {

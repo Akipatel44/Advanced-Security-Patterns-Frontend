@@ -18,7 +18,12 @@ export default function Topic3() {
   const [email, setEmail] = useState("admin@example.com");
   const [password, setPassword] = useState("Password123");
   const [tokens, setTokens] = useState<Tokens | null>(null);
-  const [loading, setLoading] = useState(false);
+  // Per-action loading states so actions don't interfere visually
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [createLoading, setCreateLoading] = useState(false);
+  const [getLoading, setGetLoading] = useState(false);
+  const [listLoading, setListLoading] = useState(false);
+  const [publishLoading, setPublishLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [data, setData] = useState<any>(null);
@@ -32,7 +37,7 @@ export default function Topic3() {
 
   // Login first
   const handleLogin = async () => {
-    setLoading(true);
+    setLoginLoading(true);
     setError("");
 
     try {
@@ -45,7 +50,7 @@ export default function Topic3() {
     } catch (err: any) {
       setError(err.response?.data?.detail || "Login failed");
     } finally {
-      setLoading(false);
+      setLoginLoading(false);
     }
   };
 
@@ -56,7 +61,7 @@ export default function Topic3() {
       return;
     }
 
-    setLoading(true);
+    setCreateLoading(true);
     setError("");
     setMessage("");
 
@@ -88,7 +93,7 @@ export default function Topic3() {
       );
       setData(null);
     } finally {
-      setLoading(false);
+      setCreateLoading(false);
     }
   };
 
@@ -99,7 +104,7 @@ export default function Topic3() {
       return;
     }
 
-    setLoading(true);
+    setGetLoading(true);
     setError("");
 
     try {
@@ -118,7 +123,7 @@ export default function Topic3() {
       );
       setData(null);
     } finally {
-      setLoading(false);
+      setGetLoading(false);
     }
   };
 
@@ -129,7 +134,7 @@ export default function Topic3() {
       return;
     }
 
-    setLoading(true);
+    setListLoading(true);
     setError("");
 
     try {
@@ -155,7 +160,7 @@ export default function Topic3() {
       );
       setData(null);
     } finally {
-      setLoading(false);
+      setListLoading(false);
     }
   };
 
@@ -166,7 +171,7 @@ export default function Topic3() {
       return;
     }
 
-    setLoading(true);
+    setPublishLoading(true);
     setError("");
 
     try {
@@ -186,7 +191,7 @@ export default function Topic3() {
       setError(err.response?.data?.detail || "Failed to publish post");
       setData(null);
     } finally {
-      setLoading(false);
+      setPublishLoading(false);
     }
   };
 
@@ -211,7 +216,7 @@ export default function Topic3() {
                 <option value="manager@example.com">Manager</option>
                 <option value="user@example.com">User</option>
               </select>
-              <Button onClick={handleLogin}>{loading ? 'Logging in...' : 'Login'}</Button>
+              <Button onClick={handleLogin} loading={loginLoading}>{loginLoading ? 'Logging in...' : 'Login'}</Button>
             </div>
           </Card>
 
@@ -226,20 +231,22 @@ export default function Topic3() {
                   <textarea value={content} onChange={(e) => setContent(e.target.value)} className="w-full px-3 py-2 border rounded" />
                   <label className="label">Tags</label>
                   <input value={tags} onChange={(e) => setTags(e.target.value)} className="w-full px-3 py-2 border rounded" />
-                  <Button onClick={testCreatePost}>{loading ? 'Creating...' : 'Create Post'}</Button>
+                  <Button onClick={testCreatePost} loading={createLoading}>{createLoading ? 'Creating...' : 'Create Post'}</Button>
                 </div>
               </Card>
 
               <Card>
                 <h3 className="font-semibold">Other Tests</h3>
                 <div className="mt-3 space-y-3">
-                  <Button onClick={testGetPost}>Get Post #1</Button>
+                  <Button onClick={testGetPost} loading={getLoading}>{getLoading ? 'Getting...' : 'Get Post #1'}</Button>
                   <div className="flex gap-2">
                     <input value={skip} onChange={(e) => setSkip(e.target.value)} className="px-2 py-1 border rounded w-1/2" />
                     <input value={limit} onChange={(e) => setLimit(e.target.value)} className="px-2 py-1 border rounded w-1/2" />
                   </div>
-                  <Button onClick={testListPosts}>List Posts</Button>
-                  <Button onClick={testPublishPost}>Publish Post #1</Button>
+                  <div className="flex gap-2">
+                    <Button onClick={testListPosts} loading={listLoading}>{listLoading ? 'Listing...' : 'List Posts'}</Button>
+                    <Button onClick={testPublishPost} loading={publishLoading}>{publishLoading ? 'Publishing...' : 'Publish Post #1'}</Button>
+                  </div>
                 </div>
               </Card>
             </div>
