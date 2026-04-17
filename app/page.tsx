@@ -22,7 +22,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-8 card-grid cols-3">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="card p-5">
             <div className="flex items-center gap-3 mb-3">
               <IconKey className="w-7 h-7 text-primary-500" />
@@ -35,7 +35,7 @@ export default function Home() {
               <li>Session security</li>
             </ul>
             <ClientLink href="/topic1">
-              <Button variant="primary">Explore</Button>
+              <Button variant="primary" className="w-full md:w-auto">Explore</Button>
             </ClientLink>
           </div>
 
@@ -51,7 +51,7 @@ export default function Home() {
               <li>Resource ACLs</li>
             </ul>
             <ClientLink href="/topic2">
-              <Button variant="primary">Explore</Button>
+              <Button variant="primary" className="w-full md:w-auto">Explore</Button>
             </ClientLink>
           </div>
 
@@ -67,7 +67,7 @@ export default function Home() {
               <li>Error handling</li>
             </ul>
             <ClientLink href="/topic3">
-              <Button variant="primary">Explore</Button>
+              <Button variant="primary" className="w-full md:w-auto">Explore</Button>
             </ClientLink>
           </div>
         </div>
