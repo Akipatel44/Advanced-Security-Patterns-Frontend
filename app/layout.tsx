@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import React from "react";
 import "./globals.css";
+import dynamic from "next/dynamic";
+const NavigationLoader = dynamic(() => import("../components/ui/NavigationLoader"), { ssr: false });
 
 export const metadata: Metadata = {
   title: "Advanced Security Patterns",
@@ -25,6 +27,7 @@ export default function RootLayout({
             </p>
           </div>
         </nav>
+        <NavigationLoader />
         <main className="max-w-7xl mx-auto px-4 py-8">
           {children}
         </main>

@@ -25,6 +25,7 @@ export default function Topic2() {
 
   // Login first
   const handleLogin = async () => {
+    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:start'));
     setLoading(true);
     setError("");
 
@@ -39,6 +40,7 @@ export default function Topic2() {
       setError(err.response?.data?.detail || "Login failed");
     } finally {
       setLoading(false);
+      if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:stop'));
     }
   };
 
@@ -49,6 +51,7 @@ export default function Topic2() {
       return;
     }
 
+    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:start'));
     setLoading(true);
     setError("");
     setMessage("");
@@ -72,6 +75,7 @@ export default function Topic2() {
       setData(null);
     } finally {
       setLoading(false);
+      if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:stop'));
     }
   };
 
@@ -89,14 +93,14 @@ export default function Topic2() {
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card>
             <h3 className="font-semibold">Select Role & Login</h3>
-            <div className="mt-3 space-y-3">
+              <div className="mt-3 space-y-3">
               <label className="label">User Role</label>
               <select value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-3 py-2 border rounded">
                 <option value="admin@example.com">Admin - Full access</option>
                 <option value="manager@example.com">Manager - Team access</option>
                 <option value="user@example.com">User - Basic access</option>
               </select>
-              <Button className="w-full" onClick={handleLogin}>{loading ? 'Logging in...' : 'Login'}</Button>
+              <Button className="w-full" loading={loading} onClick={handleLogin}>{loading ? 'Logging in...' : 'Login'}</Button>
             </div>
           </Card>
 
@@ -104,12 +108,12 @@ export default function Topic2() {
             <Card>
               <h3 className="font-semibold">RBAC Tests</h3>
               <div className="mt-3 grid grid-cols-1 gap-3">
-                <Button onClick={() => testEndpoint('/my-permissions', 'My Permissions')}>View Permissions</Button>
-                <Button onClick={() => testEndpoint('/user-data', 'User Data')}>Access User Data</Button>
-                <Button onClick={() => testEndpoint('/admin-panel', 'Admin Panel')}>Admin Panel</Button>
-                <Button onClick={() => testEndpoint('/permission-matrix', 'Permission Matrix')}>View Matrix</Button>
-                <Button onClick={() => testEndpoint('/resource-access', 'Resource Access')}>Check ACL</Button>
-                <Button onClick={() => testEndpoint('/permissions', 'All Permissions')}>View All Permissions</Button>
+                <Button loading={loading} onClick={() => testEndpoint('/my-permissions', 'My Permissions')}>View Permissions</Button>
+                <Button loading={loading} onClick={() => testEndpoint('/user-data', 'User Data')}>Access User Data</Button>
+                <Button loading={loading} onClick={() => testEndpoint('/admin-panel', 'Admin Panel')}>Admin Panel</Button>
+                <Button loading={loading} onClick={() => testEndpoint('/permission-matrix', 'Permission Matrix')}>View Matrix</Button>
+                <Button loading={loading} onClick={() => testEndpoint('/resource-access', 'Resource Access')}>Check ACL</Button>
+                <Button loading={loading} onClick={() => testEndpoint('/permissions', 'All Permissions')}>View All Permissions</Button>
               </div>
             </Card>
           )}

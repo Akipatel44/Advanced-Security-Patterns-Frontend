@@ -26,6 +26,8 @@ export default function Topic1() {
   // Step 1: Login
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    // start global loader + local state
+    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:start'));
     setLoading(true);
     setError("");
     setMessage("");
@@ -42,6 +44,7 @@ export default function Topic1() {
       setError(err.response?.data?.detail || "Login failed");
     } finally {
       setLoading(false);
+      if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:stop'));
     }
   };
 
@@ -52,6 +55,7 @@ export default function Topic1() {
       return;
     }
 
+    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:start'));
     setLoading(true);
     setError("");
 
@@ -68,6 +72,7 @@ export default function Topic1() {
       setError(err.response?.data?.detail || "Failed to get user info");
     } finally {
       setLoading(false);
+      if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:stop'));
     }
   };
 
@@ -78,6 +83,7 @@ export default function Topic1() {
       return;
     }
 
+    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:start'));
     setLoading(true);
     setError("");
 
@@ -92,6 +98,7 @@ export default function Topic1() {
       setError(err.response?.data?.detail || "Token refresh failed");
     } finally {
       setLoading(false);
+      if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:stop'));
     }
   };
 
@@ -102,6 +109,7 @@ export default function Topic1() {
       return;
     }
 
+    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:start'));
     setLoading(true);
     setError("");
 
@@ -123,6 +131,7 @@ export default function Topic1() {
       setError(err.response?.data?.detail || "Logout failed");
     } finally {
       setLoading(false);
+      if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('app:loading:stop'));
     }
   };
 
@@ -165,7 +174,7 @@ export default function Topic1() {
               </div>
 
               <div className="flex gap-3">
-                <button type="submit" className="btn-primary w-full" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
+                <Button type="submit" loading={loading} className="w-full">{loading ? 'Logging in...' : 'Login'}</Button>
               </div>
             </form>
           </Card>

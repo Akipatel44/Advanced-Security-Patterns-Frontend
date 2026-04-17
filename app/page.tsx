@@ -1,4 +1,4 @@
-import Link from "next/link";
+import ClientLink from "../components/ui/ClientLink";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 import IconKey from "../components/icons/IconKey";
@@ -14,8 +14,10 @@ export default function Home() {
             <h1 className="text-3xl title mb-1">Advanced Security Patterns</h1>
             <p className="label">Learn JWT Authentication, RBAC/ACL, and Secure APIs</p>
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/topic1"><Button className="hidden md:inline-flex">Get Started</Button></Link>
+            <div className="flex items-center gap-3">
+            <ClientLink href="/topic1">
+              <Button className="hidden md:inline-flex">Get Started</Button>
+            </ClientLink>
             <Button variant="ghost" className="ml-2">Docs</Button>
           </div>
         </div>
@@ -32,7 +34,9 @@ export default function Home() {
               <li>Short & long lived tokens</li>
               <li>Session security</li>
             </ul>
-            <Link href="/topic1"><Button variant="primary">Explore</Button></Link>
+            <ClientLink href="/topic1">
+              <Button variant="primary">Explore</Button>
+            </ClientLink>
           </div>
 
           <div className="card p-5">
@@ -46,7 +50,9 @@ export default function Home() {
               <li>Permission checks</li>
               <li>Resource ACLs</li>
             </ul>
-            <Link href="/topic2"><Button variant="primary">Explore</Button></Link>
+            <ClientLink href="/topic2">
+              <Button variant="primary">Explore</Button>
+            </ClientLink>
           </div>
 
           <div className="card p-5">
@@ -60,7 +66,9 @@ export default function Home() {
               <li>Rate limiting</li>
               <li>Error handling</li>
             </ul>
-            <Link href="/topic3"><Button variant="primary">Explore</Button></Link>
+            <ClientLink href="/topic3">
+              <Button variant="primary">Explore</Button>
+            </ClientLink>
           </div>
         </div>
       </Card>
